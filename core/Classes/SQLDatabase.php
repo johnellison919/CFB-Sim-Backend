@@ -4,10 +4,9 @@
 	*
 	* @author John Ellison
 	*/
-
 	class SQLDatabase {
 
-		const TABLE_PREFIX = "fbdb_"; //TODO: Replace instances of the prefix with the constant
+		const TABLE_PREFIX = "fbdb_";
 
 		public static function connect(){
 			include __DIR__ . "/../../database-config.php";

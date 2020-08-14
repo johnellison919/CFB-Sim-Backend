@@ -1,13 +1,16 @@
 <?php
+    SQLDatabase::createTable("config", [
+        "name"=>"varchar(191)",
+        "value"=>"varchar(191)",
+        "PRIMARY KEY"=>"(`name`)",
+    ]);
 
-SQLDatabase::createTable("config", [
-    "name"=>"varchar(191)",
-    "value"=>"varchar(191)",
-    "PRIMARY KEY"=>"(`name`)",
-]);
+    $configQuery =
+        "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "config` (name, value)
+        VALUES
+        ('currentWeek', 1),
+        ('currentYear', 2020)";
 
-$configQuery =
-    "INSERT INTO fbdb_config (name, value)
-    VALUES ('currentWeek', 1)";
-    
-$connection->query($configQuery);
+    $connection->query($configQuery);
+
+    echo("Config table has been created!<br>");

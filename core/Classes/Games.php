@@ -10,7 +10,7 @@
 
 			$result = $database->prepare("
 				SELECT `homeTeamID`, `awayTeamID`, `gameWeek`
-				FROM `fbdb_schedule`
+				FROM `" . SQLDatabase::TABLE_PREFIX . "schedule`
 			");
 
 			$result->execute();

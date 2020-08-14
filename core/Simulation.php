@@ -1,5 +1,4 @@
 <?php
-
 	require_once(__DIR__ . "/Classes/SQLDatabase.php");
 	require_once(__DIR__ . "/Classes/Utilities.php");
 	require_once(__DIR__ . "/Classes/Games.php");
@@ -13,11 +12,12 @@
 	$startTime = microtime(true);
 
 	/*
-	* This grabs the currentWeek from the database, which we use to determine what actions come next
+	* We get the current week and year from the database, which we use to determine what actions come next
 	*/
 	$currentWeek = Utilities::getCurrentWeek();
+	$currentYear = Utilities::getCurrentYear();
 
-	echo "It is currently Week " . $currentWeek . "<br>";
+	echo "It is currently Week " . $currentWeek . ", " . $currentYear . "<br>";
 
 	if($currentWeek == 0) {
 		echo "It is the Preseason<br>";
@@ -57,9 +57,10 @@
 		echo "It is the Postseason<br>";
 
 		/*
-		* We reset the currentWeek to 0, as we're about to start a new season
+		* We reset the current week to 0, and the current year by 1, as we're about to start a new season
 		*/
 		Utilities::resetCurrentWeek();
+		Utilities::advanceCurrentYear($currentYear);
 
 	} else {
 		echo "Uh oh, something is broken";
