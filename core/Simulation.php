@@ -5,6 +5,7 @@
 	require_once(__DIR__ . "/Classes/Coaches.php");
 	require_once(__DIR__ . "/Classes/Players.php");
 	require_once(__DIR__ . "/Classes/Recruiting.php");
+	require_once(__DIR__ . "/Classes/Schedule.php");
 
 	/*
 	* We set a start time to evaluate how long the simulation process takes
@@ -22,14 +23,16 @@
 	if($currentWeek == 0) {
 		echo "It is the Preseason<br>";
 		/*
-		* We start by deleting the recruits from the previous season
+		* We start by deleting the recruits from the previous season, then creating the recruits for the new season
 		*/
 		Recruiting::deleteRecruits();
+		Recruiting::createRecruits();
 
 		/*
-		* Now, we move on to creating the recruits for the new season
+		* Now we delete the schedule from the previous season, then creating the schedule for the new season
 		*/
-		Recruiting::createRecruits();
+		Schedule::deleteSchedule();
+		Schedule::createSchedule();
 
 		/*
 		* Now we need to advance to the next week

@@ -1,8 +1,10 @@
 <?php
     SQLDatabase::createTable("schedule", [
+        "id"=>"int(11) NOT NULL AUTO_INCREMENT",
         "homeTeamID"=>"varchar(191)",
         "awayTeamID"=>"varchar(191)",
         "gameWeek"=>"varchar(191)",
+        "PRIMARY KEY"=>"(`id`)",
     ]);
 
     $scheduleQuery =
