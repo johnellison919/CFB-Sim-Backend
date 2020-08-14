@@ -13,7 +13,7 @@
         VALUES
         ('Jake', 'Peralta', 70, 190),
         ('Terry', 'Jeffords', 74, 260),
-        ('Charles', 'Boyle', 57, 180),
+        ('Charles', 'Boyle', 67, 180),
         ('Raymond', 'Holt', 70, 220)";
 
     $connection->query($recruitsQuery);

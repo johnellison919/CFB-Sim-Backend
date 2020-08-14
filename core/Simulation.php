@@ -21,6 +21,15 @@
 
 	if($currentWeek == 0) {
 		echo "It is the Preseason<br>";
+		/*
+		* We start by deleting the recruits from the previous season
+		*/
+		Recruiting::deleteRecruits();
+
+		/*
+		* Now, we move on to creating the recruits for the new season
+		*/
+		Recruiting::createRecruits();
 
 		/*
 		* Now we need to advance to the next week
