@@ -24,9 +24,7 @@
 					"gameWeek"=>$gameWeek
 				];
 			}
-
 			return $schedule;
-
 		}
 
 		public function simulateCurrentWeekGames() {

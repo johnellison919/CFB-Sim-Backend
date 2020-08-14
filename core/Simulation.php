@@ -63,7 +63,7 @@
 		Utilities::advanceCurrentYear($currentYear);
 
 	} else {
-		echo "Uh oh, something is broken";
+		echo "Uh oh, something is broken.";
 	}
 
 	/*
