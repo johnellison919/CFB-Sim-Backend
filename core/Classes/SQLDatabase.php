@@ -56,57 +56,13 @@
 					)
 				");
 			}
-
-			$connection->close();
 		}
 
 		public static function createInternalTables(){
-			SQLDatabase::createTable("config", [
-				"name"=>"varchar(191)",
-				"value"=>"varchar(191)",
-				"PRIMARY KEY"=>"(`name`)",
-			]);
-
-			SQLDatabase::createTable("schools", [
-				"id"=>"int(11) NOT NULL AUTO_INCREMENT",
-				"schoolName"=>"varchar(191)",
-				"totalWins"=>"varchar(191)",
-				"totalLoses"=>"varchar(191)",
-				"seasonWins"=>"varchar(191)",
-				"seasonLoses"=>"varchar(191)",
-				"PRIMARY KEY"=>"(`id`)",
-			]);
-
-			SQLDatabase::createTable("schedule", [
-				"homeTeamID"=>"varchar(191)",
-				"awayTeamID"=>"varchar(191)",
-				"gameWeek"=>"varchar(191)",
-			]);
-
 			$connection = SQLDatabase::connect();
 
-			$configQuery =
-				"INSERT INTO fbdb_config (name, value)
-				VALUES ('currentWeek', 1)";
-			$connection->query($configQuery);
-
-			$schoolQuery =
-				"INSERT INTO fbdb_schools (schoolName, totalWins, totalLoses, seasonWins, seasonLoses)
-				VALUES
-				('Alabama', 0, 0, 0, 0),
-				('Auburn', 0, 0, 0, 0),
-				('Michigan', 0, 0, 0, 0),
-				('Ohio State', 0, 0, 0, 0)";
-			$connection->query($schoolQuery);
-
-			$scheduleQuery =
-				"INSERT INTO fbdb_schedule (homeTeamID, awayTeamID, gameWeek)
-				VALUES
-				(1, 2, 1),(3, 4, 1),
-				(1, 3, 2),(2, 4, 2),
-				(1, 4, 3),(2, 3, 3)";
-			$connection->query($scheduleQuery);
-
-			$connection->close();
+			foreach (glob("./database/*.php") as $filename) {
+				include $filename;
+			}
 		}
 	}

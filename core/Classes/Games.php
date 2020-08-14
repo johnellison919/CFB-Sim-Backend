@@ -27,8 +27,6 @@
 
 			return $schedule;
 
-			$database->close();
-
 		}
 
 		public function simulateCurrentWeekGames() {

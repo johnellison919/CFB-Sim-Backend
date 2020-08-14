@@ -16,8 +16,6 @@
 				$row = $result->fetch_assoc();
 				return (int) $row['value'];
 			}
-
-			$database->close();
 		}
 
 		public static function advanceCurrentWeek(int $currentWeek){
@@ -27,8 +25,6 @@
 			$result = $database->query("
 				UPDATE `fbdb_config` SET `value` = '$currentWeek' WHERE `fbdb_config`.`name` = 'currentWeek';
 			");
-
-			$database->close();
 		}
 
 		public static function resetCurrentWeek(){
@@ -37,7 +33,5 @@
 			$result = $database->query("
 				UPDATE `fbdb_config` SET `value` = '0' WHERE `fbdb_config`.`name` = 'currentWeek';
 			");
-
-			$database->close();
 		}
 	}
