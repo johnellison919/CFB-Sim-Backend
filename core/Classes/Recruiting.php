@@ -5,18 +5,33 @@
 	* @author John Ellison
 	*/
 	class Recruiting {
-		public function createRecruits() { //TODO: Instead of set recruit information, it should be randomized
+
+		public function createRecruits() {
 			$connection = SQLDatabase::connect();
+			$recruitAmount = 5;
+			$recruitsArray = array_filter(Recruiting::generateRecruitsArray($recruitAmount));
 
-			$createRecruitsQuery =
-		        "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "recruits` (firstName, lastName, height, weight)
-		        VALUES
-		        ('Jake', 'Peralta', 70, 190),
-		        ('Terry', 'Jeffords', 74, 260),
-		        ('Charles', 'Boyle', 67, 180),
-		        ('Raymond', 'Holt', 70, 220)";
+			$statement = $connection->prepare(
+			    "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "recruits` (firstName, lastName, height, weight)
+			    VALUES (?,?,?,?)"
+			);
 
-		    $connection->query($createRecruitsQuery);
+			$connection->query("START TRANSACTION");
+
+			foreach ($recruitsArray as $row) {
+			    $bind = $statement->bind_param('ssii',
+			        $row[0],
+			        $row[1],
+			        $row[2],
+			        $row[3]
+			    );
+			    $execute = $statement->execute();
+			}
+
+			// Close the prepared statement
+			$statement->close();
+
+			$commit = $connection->query("COMMIT");
 
 			echo "Created Recruits for the current season<br>";
 		}
@@ -30,6 +45,35 @@
 			$connection->query($deleteRecruitsQuery);
 
 			echo "Deleted Recruits for the previous season<br>";
+		}
+
+		public function generateRecruitsArray($recruitAmount) {
+			$recruitsArray = array();
+			$i = 0;
+
+			while($i < $recruitAmount) {
+				//TODO: Generate the first and last name for the player
+				array_push($recruitsArray, array('Firstname', 'Lastname', 70, 190));
+				$i++;
+			}
+
+			return $recruitsArray;
+		}
+
+		public function generateRecruitFirstName() {
+
+		}
+
+		public function generateRecruitLastName() {
+
+		}
+
+		public function generateRecruitHeight() {
+
+		}
+
+		public function generateRecruitWeight() {
+
 		}
 
 		public function simulateRecruiting() {
