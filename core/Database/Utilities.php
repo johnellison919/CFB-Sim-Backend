@@ -9,8 +9,18 @@
     $configQuery =
         "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "utilities` (firstName, lastName)
         VALUES
-        ('Adam', 'Appleyard'),
-        ('Benny', 'Boyland')";
+        ('Adam', 'Smith'),
+        ('Brent', 'Johnson'),
+        ('Chris', 'Williams'),
+        ('Dennis', 'Brown'),
+        ('Elliot', 'Jones'),
+        ('Frank', 'Garcia'),
+        ('Greg', 'Miller'),
+        ('Hayden', 'Davis'),
+        ('Isaac', 'Rodriguez'),
+        ('Jayden', 'Wilson'),
+        ('Kevin', 'Anderson')
+        ";
 
     $connection->query($configQuery);
 
