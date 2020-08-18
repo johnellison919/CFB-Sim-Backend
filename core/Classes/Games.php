@@ -73,11 +73,14 @@
 			");
 		}
 
-		public function resetSeasonWinsAndLoses() {
+		public function resetSeasonWinsAndLoses()
+		{
 			$database = SQLDatabase::connect();
 
 			$result = $database->query("
 				UPDATE `" . SQLDatabase::TABLE_PREFIX . "schools` SET `seasonWins` = 0, `seasonLoses` = 0;
 			");
+
+			echo("Previous season win/lose records have been reset<br>");
 		}
 	}

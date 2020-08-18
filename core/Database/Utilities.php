@@ -4,23 +4,33 @@
         "firstName"=>"tinytext",
         "lastName"=>"tinytext",
         "ethnicity"=>"tinytext",
+        "position"=>"tinytext",
         "PRIMARY KEY"=>"(`utilityId`)",
     ]);
 
     $configQuery =
-        "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "utilities` (firstName, lastName, ethnicity)
+        "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "utilities` (firstName, lastName, ethnicity, position)
         VALUES
-        ('Adam', 'Smith', 'White'),
-        ('Brent', 'Johnson', 'Hispanic'),
-        ('Chris', 'Williams', 'Black'),
-        ('Dennis', 'Brown', 'Asian'),
-        ('Elliot', 'Jones', 'Native American'),
-        ('Frank', 'Garcia', 'Hawaiian'),
-        ('Greg', 'Miller', ''),
-        ('Hayden', 'Davis', ''),
-        ('Isaac', 'Rodriguez', ''),
-        ('Jayden', 'Wilson', ''),
-        ('Kevin', 'Anderson', '')
+        ('Adam', 'Smith', 'White', 'QB'),
+        ('Brent', 'Johnson', 'Hispanic', 'HB'),
+        ('Chris', 'Williams', 'Black', 'FB'),
+        ('Dennis', 'Brown', 'Asian', 'WR'),
+        ('Elliot', 'Jones', 'Native American', 'TE'),
+        ('Frank', 'Garcia', 'Hawaiian', 'LT'),
+        ('Greg', 'Miller', '', 'RT'),
+        ('Hayden', 'Davis', '', 'C'),
+        ('Isaac', 'Rodriguez', '', 'LG'),
+        ('Jayden', 'Wilson', '', 'RG'),
+        ('Kevin', 'Anderson', '', 'DE'),
+        ('', '', '', 'DT'),
+        ('', '', '', 'LOLB'),
+        ('', '', '', 'MLB'),
+        ('', '', '', 'ROLB'),
+        ('', '', '', 'CB'),
+        ('', '', '', 'SS'),
+        ('', '', '', 'FS'),
+        ('', '', '', 'K'),
+        ('', '', '', 'P')
         ";
 
     $connection->query($configQuery);
