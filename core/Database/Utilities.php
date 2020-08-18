@@ -3,23 +3,24 @@
         "utilityId"=>"int(11) NOT NULL AUTO_INCREMENT",
         "firstName"=>"tinytext",
         "lastName"=>"tinytext",
+        "ethnicity"=>"tinytext",
         "PRIMARY KEY"=>"(`utilityId`)",
     ]);
 
     $configQuery =
-        "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "utilities` (firstName, lastName)
+        "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "utilities` (firstName, lastName, ethnicity)
         VALUES
-        ('Adam', 'Smith'),
-        ('Brent', 'Johnson'),
-        ('Chris', 'Williams'),
-        ('Dennis', 'Brown'),
-        ('Elliot', 'Jones'),
-        ('Frank', 'Garcia'),
-        ('Greg', 'Miller'),
-        ('Hayden', 'Davis'),
-        ('Isaac', 'Rodriguez'),
-        ('Jayden', 'Wilson'),
-        ('Kevin', 'Anderson')
+        ('Adam', 'Smith', 'White'),
+        ('Brent', 'Johnson', 'Hispanic'),
+        ('Chris', 'Williams', 'Black'),
+        ('Dennis', 'Brown', 'Asian'),
+        ('Elliot', 'Jones', 'Native American'),
+        ('Frank', 'Garcia', 'Hawaiian'),
+        ('Greg', 'Miller', ''),
+        ('Hayden', 'Davis', ''),
+        ('Isaac', 'Rodriguez', ''),
+        ('Jayden', 'Wilson', ''),
+        ('Kevin', 'Anderson', '')
         ";
 
     $connection->query($configQuery);

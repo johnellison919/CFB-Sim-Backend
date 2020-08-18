@@ -9,26 +9,24 @@
 		public function createRecruits()
 		{
 			$connection = SQLDatabase::connect();
-			/*
-			* TODO: Set to 3500 when the simulation is ready for the full amount of recruits
-			*/
-			$recruitAmount = 20;
+			$recruitAmount = 10; //TODO: Set to 3500 when the simulation is ready for the full amount of recruits
 			$recruitsArray = array_filter(Recruiting::generateRecruitsArray($recruitAmount));
 
 			$statement = $connection->prepare(
-			    "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "recruits` (firstName, lastName, height, weight)
-			    VALUES (?,?,?,?)"
+			    "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "recruits` (firstName, lastName, height, weight, ethnicity)
+			    VALUES (?,?,?,?,?)"
 			);
 
 			$connection->query("START TRANSACTION");
 
 			foreach ($recruitsArray as $row)
 			{
-			    $bind = $statement->bind_param('ssii',
+			    $bind = $statement->bind_param('ssiis',
 			        $row[0],
 			        $row[1],
 			        $row[2],
-			        $row[3]
+			        $row[3],
+					$row[4]
 			    );
 			    $execute = $statement->execute();
 			}
@@ -64,20 +62,35 @@
 				$lastName = Recruiting::generateRecruitLastName();
 				$height = Recruiting::generateRecruitHeight();
 				$weight = Recruiting::generateRecruitWeight();
+				$ethnicity = Recruiting::generateRecruitEthnicity();
 
 				//TODO: Generate the first and last name for the player
-				array_push($recruitsArray, array($firstName, $lastName, $height, $weight));
+				array_push($recruitsArray, array($firstName, $lastName, $height, $weight, $ethnicity));
 				$i++;
 			}
 
 			return $recruitsArray;
 		}
 
+		public function generateRecruitEthnicity()
+		{
+			$database = SQLDatabase::connect();
+			$result = $database->query("
+				SELECT `ethnicity` FROM `" . SQLDatabase::TABLE_PREFIX . "utilities` WHERE `ethnicity` IS NOT NULL AND `ethnicity` != '' order by RAND() LIMIT 1
+			");
+
+			if ($result->num_rows > 0)
+			{
+				$row = $result->fetch_assoc();
+				return (string) $row['ethnicity'];
+			}
+		}
+
 		public function generateRecruitFirstName()
 		{
 			$database = SQLDatabase::connect();
 			$result = $database->query("
-				SELECT `firstName` FROM `" . SQLDatabase::TABLE_PREFIX . "utilities` order by RAND() LIMIT 1
+				SELECT `firstName` FROM `" . SQLDatabase::TABLE_PREFIX . "utilities` WHERE `firstName` IS NOT NULL AND `firstName` != '' order by RAND() LIMIT 1
 			");
 
 			if ($result->num_rows > 0)
@@ -91,7 +104,7 @@
 		{
 			$database = SQLDatabase::connect();
 			$result = $database->query("
-				SELECT `lastName` FROM `" . SQLDatabase::TABLE_PREFIX . "utilities` order by RAND() LIMIT 1
+				SELECT `lastName` FROM `" . SQLDatabase::TABLE_PREFIX . "utilities` WHERE `lastName` IS NOT NULL AND `lastName` != '' order by RAND() LIMIT 1
 			");
 
 			if ($result->num_rows > 0)

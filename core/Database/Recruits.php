@@ -5,16 +5,17 @@
         "lastName"=>"tinytext",
         "height"=>"int(11)",
         "weight"=>"int(11)",
+        "ethnicity"=>"tinytext",
         "PRIMARY KEY"=>"(`recruitId`)",
     ]);
 
     $recruitsQuery =
-        "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "recruits` (firstName, lastName, height, weight)
+        "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "recruits` (firstName, lastName, height, weight, ethnicity)
         VALUES
-        ('Jake', 'Peralta', 70, 190),
-        ('Terry', 'Jeffords', 74, 260),
-        ('Charles', 'Boyle', 67, 180),
-        ('Raymond', 'Holt', 70, 220)";
+        ('Jake', 'Peralta', 70, 190, 'White'),
+        ('Terry', 'Jeffords', 74, 260, 'Black'),
+        ('Charles', 'Boyle', 67, 180, 'White'),
+        ('Raymond', 'Holt', 70, 220, 'Black')";
 
     $connection->query($recruitsQuery);
 
