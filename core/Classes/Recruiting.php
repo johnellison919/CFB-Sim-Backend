@@ -9,11 +9,12 @@
 		public function createRecruits()
 		{
 			$connection = SQLDatabase::connect();
-			$recruitAmount = 50; //TODO: Set to 3500 when the simulation is ready for the full amount of recruits
+			$recruitAmount = 10; //TODO: Set to 3500 when the simulation is ready for the full amount of recruits
 			$recruitsArray = array_filter(Recruiting::generateRecruitsArray($recruitAmount));
 
 			$statement = $connection->prepare(
-			    "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "recruits` (firstName, lastName, height, weight, ethnicity, position)
+			    "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "recruits`
+				(firstName, lastName, height, weight, ethnicity, position)
 			    VALUES (?,?,?,?,?,?)"
 			);
 
@@ -102,6 +103,10 @@
 			}
 		}
 
+		/*
+		* TODO: Positions shouldn't be generated at true random - a set percentage of recruits should be in each position.
+		* 		It might make more sense to generate recruits based on positions (i.e. generateQB, generateHB, etc.)
+		*/
 		public function generateRecruitPosition()
 		{
 			$database = SQLDatabase::connect();
