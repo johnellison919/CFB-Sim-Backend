@@ -20,7 +20,7 @@
 
 	echo "It is currently Week " . $currentWeek . ", " . $currentYear . "<br>";
 
-	if($currentWeek == 0)
+	if ($currentWeek == 0)
 	{
 		echo "It is the Preseason<br>";
 		/*
@@ -46,7 +46,7 @@
 		Utilities::advanceCurrentWeek($currentWeek);
 
 	}
-	else if($currentWeek >= 1 && $currentWeek <= 16)
+	else if ($currentWeek >= 1 && $currentWeek <= 16)
 	{
 		/*
 		* Games are simulated first, because the other processes of the simulation are dependendant on them
