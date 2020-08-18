@@ -1,14 +1,15 @@
 <?php
     SQLDatabase::createTable("schedule", [
-        "id"=>"int(11) NOT NULL AUTO_INCREMENT",
-        "homeTeamID"=>"varchar(191)",
-        "awayTeamID"=>"varchar(191)",
-        "gameWeek"=>"varchar(191)",
-        "PRIMARY KEY"=>"(`id`)",
+        "scheduleId"=>"int(11) NOT NULL AUTO_INCREMENT",
+        "homeTeamId"=>"int(11)",
+        "awayTeamId"=>"int(11)",
+        "gameWeek"=>"int(11)",
+        "isNeutral"=>"tinyint(1)",
+        "PRIMARY KEY"=>"(`scheduleId`)",
     ]);
 
     $scheduleQuery =
-        "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "schedule` (homeTeamID, awayTeamID, gameWeek)
+        "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "schedule` (homeTeamId, awayTeamId, gameWeek)
         VALUES
         (1, 2, 1),(3, 4, 1),
         (1, 3, 2),(2, 4, 2),

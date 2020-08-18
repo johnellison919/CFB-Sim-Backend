@@ -1,8 +1,9 @@
 <?php
     SQLDatabase::createTable("config", [
-        "name"=>"varchar(191)",
-        "value"=>"varchar(191)",
-        "PRIMARY KEY"=>"(`name`)",
+        "configId"=>"int(11) NOT NULL AUTO_INCREMENT",
+        "name"=>"tinytext",
+        "value"=>"int",
+        "PRIMARY KEY"=>"(`configId`)",
     ]);
 
     $configQuery =

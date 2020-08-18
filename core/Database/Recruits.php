@@ -1,11 +1,11 @@
 <?php
     SQLDatabase::createTable("recruits", [
-        "id"=>"int(11) NOT NULL AUTO_INCREMENT",
-        "firstName"=>"varchar(191)",
-        "lastName"=>"varchar(191)",
-        "height"=>"varchar(191)",
-        "weight"=>"varchar(191)",
-        "PRIMARY KEY"=>"(`id`)",
+        "recruitId"=>"int(11) NOT NULL AUTO_INCREMENT",
+        "firstName"=>"tinytext",
+        "lastName"=>"tinytext",
+        "height"=>"int(11)",
+        "weight"=>"int(11)",
+        "PRIMARY KEY"=>"(`recruitId`)",
     ]);
 
     $recruitsQuery =

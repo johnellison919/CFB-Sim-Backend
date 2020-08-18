@@ -4,8 +4,10 @@
 	*
 	* @author John Ellison
 	*/
-	class Coaches {
-		public function simulateCoaches() {
-			echo "Coaches - Coaches have been simulated<br>";
+	class Coaches
+	{
+		public function simulateCoaches()
+		{
+			echo "Coaches - Coach data has been simulated<br>";
 		}
 	}

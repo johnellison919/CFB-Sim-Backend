@@ -4,9 +4,10 @@
 	*
 	* @author John Ellison
 	*/
-	class Recruiting {
-
-		public function createRecruits() {
+	class Recruiting
+	{
+		public function createRecruits()
+		{
 			$connection = SQLDatabase::connect();
 			/*
 			* TODO: Set to 3500 when the simulation is ready for the full amount of recruits
@@ -21,7 +22,8 @@
 
 			$connection->query("START TRANSACTION");
 
-			foreach ($recruitsArray as $row) {
+			foreach ($recruitsArray as $row)
+			{
 			    $bind = $statement->bind_param('ssii',
 			        $row[0],
 			        $row[1],
@@ -39,7 +41,8 @@
 			echo "Created Recruits for the current season<br>";
 		}
 
-		public function deleteRecruits() {
+		public function deleteRecruits()
+		{
 			$connection = SQLDatabase::connect();
 
 			$deleteRecruitsQuery =
@@ -50,11 +53,13 @@
 			echo "Deleted Recruits for the previous season<br>";
 		}
 
-		public function generateRecruitsArray($recruitAmount) {
+		public function generateRecruitsArray($recruitAmount)
+		{
 			$recruitsArray = array();
 			$i = 0;
 
-			while($i < $recruitAmount) {
+			while($i < $recruitAmount)
+			{
 				$firstName = Recruiting::generateRecruitFirstName();
 				$lastName = Recruiting::generateRecruitLastName();
 				$height = Recruiting::generateRecruitHeight();
@@ -68,41 +73,48 @@
 			return $recruitsArray;
 		}
 
-		public function generateRecruitFirstName() {
+		public function generateRecruitFirstName()
+		{
 			$database = SQLDatabase::connect();
 			$result = $database->query("
 				SELECT `firstName` FROM `" . SQLDatabase::TABLE_PREFIX . "utilities` order by RAND() LIMIT 1
 			");
 
-			if ($result->num_rows > 0){
+			if ($result->num_rows > 0)
+			{
 				$row = $result->fetch_assoc();
 				return (string) $row['firstName'];
 			}
 		}
 
-		public function generateRecruitLastName() {
+		public function generateRecruitLastName()
+		{
 			$database = SQLDatabase::connect();
 			$result = $database->query("
 				SELECT `lastName` FROM `" . SQLDatabase::TABLE_PREFIX . "utilities` order by RAND() LIMIT 1
 			");
 
-			if ($result->num_rows > 0){
+			if ($result->num_rows > 0)
+			{
 				$row = $result->fetch_assoc();
 				return (string) $row['lastName'];
 			}
 		}
 
-		public function generateRecruitHeight() {
+		public function generateRecruitHeight()
+		{
 			//TODO: This should change dependant on the recruit's position
 			return rand(65,80);
 		}
 
-		public function generateRecruitWeight() {
+		public function generateRecruitWeight()
+		{
 			//TODO: This should change dependant on the recruit's position
 			return rand(150,400);
 		}
 
-		public function simulateRecruiting() {
-			echo "Recruiting - Recruiting has been simulated<br>";
+		public function simulateRecruiting()
+		{
+			echo "Recruiting - Recruit data has been simulated<br>";
 		}
 	}

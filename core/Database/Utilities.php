@@ -1,9 +1,9 @@
 <?php
     SQLDatabase::createTable("utilities", [
-        "id"=>"int(11) NOT NULL AUTO_INCREMENT",
-        "firstName"=>"varchar(191)",
-        "lastName"=>"varchar(191)",
-        "PRIMARY KEY"=>"(`id`)",
+        "utilityId"=>"int(11) NOT NULL AUTO_INCREMENT",
+        "firstName"=>"tinytext",
+        "lastName"=>"tinytext",
+        "PRIMARY KEY"=>"(`utilityId`)",
     ]);
 
     $configQuery =

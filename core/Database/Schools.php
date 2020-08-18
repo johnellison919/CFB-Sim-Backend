@@ -1,12 +1,12 @@
 <?php
     SQLDatabase::createTable("schools", [
-        "id"=>"int(11) NOT NULL AUTO_INCREMENT",
-        "schoolName"=>"varchar(191)",
-        "totalWins"=>"varchar(191)",
-        "totalLoses"=>"varchar(191)",
-        "seasonWins"=>"varchar(191)",
-        "seasonLoses"=>"varchar(191)",
-        "PRIMARY KEY"=>"(`id`)",
+        "schoolId"=>"int(11) NOT NULL AUTO_INCREMENT",
+        "schoolName"=>"text",
+        "totalWins"=>"int(11)",
+        "totalLoses"=>"int(11)",
+        "seasonWins"=>"int(11)",
+        "seasonLoses"=>"int(11)",
+        "PRIMARY KEY"=>"(`schoolId`)",
     ]);
 
     $schoolQuery =

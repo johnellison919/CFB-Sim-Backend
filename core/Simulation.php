@@ -20,7 +20,8 @@
 
 	echo "It is currently Week " . $currentWeek . ", " . $currentYear . "<br>";
 
-	if($currentWeek == 0) {
+	if($currentWeek == 0)
+	{
 		echo "It is the Preseason<br>";
 		/*
 		* We start by deleting the recruits from the previous season, then creating the recruits for the new season
@@ -29,7 +30,12 @@
 		Recruiting::createRecruits();
 
 		/*
-		* Now we delete the schedule from the previous season, then creating the schedule for the new season
+		* Here, we'll reset the previous season's team wins/loses
+		*/
+		Games::resetSeasonWinsAndLoses();
+
+		/*
+		* Now, we delete the schedule from the previous season, then creating the schedule for the new season
 		*/
 		Schedule::deleteSchedule();
 		Schedule::createSchedule();
@@ -39,7 +45,9 @@
 		*/
 		Utilities::advanceCurrentWeek($currentWeek);
 
-	} else if($currentWeek >= 1 && $currentWeek <= 16) {
+	}
+	else if($currentWeek >= 1 && $currentWeek <= 16)
+	{
 		/*
 		* Games are simulated first, because the other processes of the simulation are dependendant on them
 		*/
@@ -65,7 +73,9 @@
 		*/
 		Utilities::advanceCurrentWeek($currentWeek);
 
-	} else if ($currentWeek == 17){
+	}
+	else if ($currentWeek == 17)
+	{
 		echo "It is the Postseason<br>";
 
 		/*
@@ -74,7 +84,9 @@
 		Utilities::resetCurrentWeek();
 		Utilities::advanceCurrentYear($currentYear);
 
-	} else {
+	}
+	else
+	{
 		echo "Uh oh, something is broken.";
 	}
 
