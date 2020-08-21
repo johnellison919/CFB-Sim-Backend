@@ -41,6 +41,11 @@
 		Schedule::createSchedule();
 
 		/*
+		* We need to advance the age of our coaches by one year
+		*/
+		Coaches::advanceCoachAge();
+
+		/*
 		* Now we need to advance to the next week
 		*/
 		Utilities::advanceCurrentWeek($currentWeek);
