@@ -60,16 +60,22 @@
 			}
 		}
 
-		public function updateWinsAndLoses($winnerId, $loserId)
+		public function updateWinsAndLoses($winningTeamId, $losingTeamId)
 		{
 			$database = SQLDatabase::connect();
 
-			//TODO: Try to figure out if I can do this with one query
-			$winnerQuery = $database->query("
-				UPDATE `" . SQLDatabase::TABLE_PREFIX . "schools` SET `totalWins` = `totalWins` + 1, `seasonWins` = `seasonWins` + 1 WHERE schoolId = '$winnerId';
+			//TODO: Try to figure out if this is doable with less queries
+			$winningTeamQuery = $database->query("
+				UPDATE `" . SQLDatabase::TABLE_PREFIX . "schools` SET `totalWins` = `totalWins` + 1, `seasonWins` = `seasonWins` + 1 WHERE schoolId = '$winningTeamId';
 			");
-			$loserQuery = $database->query("
-				UPDATE `" . SQLDatabase::TABLE_PREFIX . "schools` SET `totalLoses` = `totalLoses` + 1, `seasonLoses` = `seasonLoses` + 1 WHERE schoolId = '$loserId';
+			$losingTeamQuery = $database->query("
+				UPDATE `" . SQLDatabase::TABLE_PREFIX . "schools` SET `totalLoses` = `totalLoses` + 1, `seasonLoses` = `seasonLoses` + 1 WHERE schoolId = '$losingTeamId';
+			");
+			$winningCoachQuery = $database->query("
+				UPDATE `" . SQLDatabase::TABLE_PREFIX . "coaches` SET `totalWins` = `totalWins` + 1 WHERE schoolId = '$winningTeamId';
+			");
+			$losingCoachQuery = $database->query("
+				UPDATE `" . SQLDatabase::TABLE_PREFIX . "coaches` SET `totalLoses` = `totalLoses` + 1 WHERE schoolId = '$losingTeamId';
 			");
 		}
 

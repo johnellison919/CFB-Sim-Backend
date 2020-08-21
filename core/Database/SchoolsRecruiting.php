@@ -7,7 +7,7 @@
     ]);
 
     $schoolsRecruitingQuery =
-        "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "utilities` (schoolId, playerId, recruitingPoints)
+        "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "schools_recruiting` (schoolId, playerId, recruitingPoints)
         VALUES
         (0, 0, 0)
         ";
