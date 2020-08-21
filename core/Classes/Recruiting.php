@@ -67,7 +67,6 @@
 				$weight = Recruiting::generateRecruitWeight($position);
 				$ethnicity = Recruiting::generateRecruitEthnicity();
 
-				//TODO: Generate the first and last name for the player
 				array_push($recruitsArray, array($firstName, $lastName, $height, $weight, $ethnicity, $position));
 				$i++;
 			}
@@ -225,6 +224,41 @@
 				$row = $result->fetch_assoc();
 				return (string) $row['ethnicity'];
 			}
+		}
+
+		public function assignRecruitsToTeams()
+		{
+			//TODO: Get all of the current recruits in the database, and then organize the data to an array
+			$connection = SQLDatabase::connect();
+			$playersArray = array_filter();
+
+			$statement = $connection->prepare(
+			    "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "players`
+				(firstName, lastName, height, weight, ethnicity, position, class)
+			    VALUES (?,?,?,?,?,?, 'Freshman')"
+			);
+
+			$connection->query("START TRANSACTION");
+
+			foreach ($playersArray as $row)
+			{
+			    $bind = $statement->bind_param('ssiiss',
+			        $row[0],
+			        $row[1],
+			        $row[2],
+			        $row[3],
+					$row[4],
+					$row[5]
+			    );
+			    $execute = $statement->execute();
+			}
+
+			// Close the prepared statement
+			$statement->close();
+
+			$commit = $connection->query("COMMIT");
+
+			echo "Added recruits to their respective teams<br>";
 		}
 
 		public function simulateRecruiting()

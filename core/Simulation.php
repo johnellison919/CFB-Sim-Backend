@@ -81,6 +81,8 @@
 	}
 	else if ($currentWeek == 17)
 	{
+		Recruiting::assignRecruitsToTeams();
+
 		echo "It is the Postseason<br>";
 
 		/*

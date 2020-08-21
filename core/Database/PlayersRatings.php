@@ -1,6 +1,6 @@
 <?php
-    SQLDatabase::createTable("recruits_ratings", [
-        "recruitId"=>"int(11) NOT NULL AUTO_INCREMENT",
+    SQLDatabase::createTable("player_ratings", [
+        "playerId"=>"int(11) NOT NULL AUTO_INCREMENT",
         "throwingPowerRating"=>"int(11)",
         "throwingAccuracyRating"=>"int(11)",
         "speedRating"=>"int(11)",
@@ -20,11 +20,11 @@
         "puntingPowerRating"=>"int(11)",
         "puntingAccuracyRating"=>"int(11)",
         "potentialRating"=>"int(11)",
-        "PRIMARY KEY"=>"(`recruitId`)",
+        "PRIMARY KEY"=>"(`playerId`)",
     ]);
 
-    $recruitsRatingsQuery =
-        "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "recruits_ratings`
+    $playersRatingsQuery =
+        "INSERT INTO `" . SQLDatabase::TABLE_PREFIX . "player_ratings`
         (
             throwingPowerRating,
             throwingAccuracyRating,
@@ -48,8 +48,10 @@
         )
         VALUES
         (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
         (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)";
 
-    $connection->query($recruitsRatingsQuery);
+    $connection->query($playersRatingsQuery);
 
-    echo("Recruits_ratings table has been created!<br>");
+    echo("Players_ratings table has been created!<br>");
