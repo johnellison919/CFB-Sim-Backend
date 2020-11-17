@@ -10,4 +10,8 @@ public class ScheduleManager {
 		//In this method, we'll remove all of the games from the schedule database
 	}
 	
+	static void getSchedule(int week) {
+		//In this method, we need to create an array from all of the games from the specified week
+	}
+		
 }
